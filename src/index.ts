@@ -2,8 +2,9 @@ import express from "express";
 const app = express();
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import { userModel } from "./db";
+import { contentModel, userModel } from "./db";
 import dotenv from "dotenv"
+import { userMiddleware } from "./middleware";
 
 dotenv.config()
 const JWT_PASSWORD = process.env.JWT_PASSWORD as string;
@@ -53,14 +54,37 @@ app.post("/api/v1/signin", async (req, res) => {
         message: "incorrect credentials",
       });
     }
-  } catch (error) {}
+  } catch (error) {
+    res.status(403).json({
+      message:"incoreect credentials"
+    })
+  }
 });
-app.post("/api/v1/cotent", async(req, res) => {
-    const link = req.body.link,
-    const type = req.body.type,
-
+app.post("/api/v1/content", userMiddleware, (req, res) => {
+    const link = req.body.link
+    const type = req.body.type;
+    contentModel.create({
+      link,
+      type,
+      //@ts-ignore
+      userId: req.userId,
+      tags:[]
+    })
+    res.json({
+      message:"content created"
+    })
+ 
 });
-app.get("/api/v1/content", (req, res) => {});
+app.get("/api/v1/content", userMiddleware, async(req, res) => {
+  //@ts-ignore
+  const userId = req.userId;
+  const content = await contentModel.find({
+    userId:userId
+  })
+  res.json({
+    content
+  })
+});
 app.delete("/api/v1/content", (req, res) => {});
 
 app.listen(3000);
