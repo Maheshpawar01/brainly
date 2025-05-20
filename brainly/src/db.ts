@@ -21,3 +21,13 @@ const ContentSchema = new Schema({
 
 export const contentModel = model("Content", ContentSchema)
 
+//links schema
+
+const linkSchema = new Schema({
+    hash:String,
+    userId:{type: mongoose.Types.ObjectId, ref:"User", required:true, unique:true}
+})
+
+export const linkModel = model("Links", linkSchema)
+
+
