@@ -1,9 +1,13 @@
+interface inputPros{
+    type?:string;
+    placeholder:string;
+    onChange?:()=> void;
+}
 
-
-export function InputBox({onChange, placeholder}:{onChange?:()=>void; placeholder:string}){
+export function InputBox({ type = "text", placeholder, onChange}: inputPros){
     return (
         <div>
-            <input type="text" className="px-4 py-2 my-2 border rounded" onChange={onChange} placeholder={placeholder} />
+            <input type={type} onChange={onChange} placeholder={placeholder} className="w-full bg-transparent outline-none" />
         </div>
     )
 }

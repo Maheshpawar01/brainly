@@ -18,7 +18,7 @@ export function CreateContentModal(props:any){
                
 
                 <div className="my-4">
-                    <InputBox placeholder= {"title"}  />
+                    <InputBox placeholder= {"title"} />
                     <InputBox placeholder= {"link"}  />
                 </div>
                 <div className="flex justify-center items-center">

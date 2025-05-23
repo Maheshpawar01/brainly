@@ -4,7 +4,8 @@ interface ButtonProps{
     varient:"primary" | "secondary";
     text:string
     startIcon?:ReactElement;
-    onClick?:()=>void
+    onClick?:()=>void;
+    fullWidth?:boolean;
 }
 
 const variantClasses = {
@@ -15,7 +16,7 @@ const variantClasses = {
 const defaultStyles = "px-3 py-2 rounded-md font-light flex items-center"
 
 export function Button(props:ButtonProps){
-    return <button onClick={props.onClick} className={`${variantClasses[props.varient]} ${defaultStyles} cursor-pointer `}>
+    return <button onClick={props.onClick} className={`${variantClasses[props.varient]} ${defaultStyles} ${props.fullWidth? "w-full flex items-center justify-center" : ""} cursor-pointer hover:bg-purple-700 `}>
               {props.startIcon ? (
         <span className="pr-2">
           {props.startIcon}
