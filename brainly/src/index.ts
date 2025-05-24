@@ -6,12 +6,13 @@ import { contentModel, linkModel, userModel } from "./db";
 import dotenv from "dotenv"
 import { userMiddleware } from "./middleware";
 import { random } from "./utils";
-
+import cors from "cors"
 dotenv.config()
 const JWT_PASSWORD = process.env.JWT_PASSWORD as string;
 console.log(JWT_PASSWORD)
 
 app.use(express.json());
+app.use(cors());
 
 //start creating backend apis
 app.post("/api/v1/signup", async (req, res) => {
