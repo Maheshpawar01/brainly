@@ -35,7 +35,7 @@ export function Dashboard() {
           }
         })
         // console.log(response)
-        const shareUrl = `http://localhost:3000/share/${response.data.hash}`;
+        const shareUrl = `https://brainly-backend-xv4q.onrender.com/share/${response.data.hash}`;
         alert(shareUrl)
       }} varient='secondary'text='Share Brain' startIcon={<ShareIcon/>}/>
       <Button onClick={()=>{

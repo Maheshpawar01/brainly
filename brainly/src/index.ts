@@ -1,18 +1,19 @@
 import express from "express";
 const app = express();
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
-import { contentModel, linkModel, userModel } from "./db";
 import dotenv from "dotenv"
+import { contentModel, linkModel, userModel } from "./db";
 import { userMiddleware } from "./middleware";
 import { random } from "./utils";
 import cors from "cors"
 dotenv.config()
-const JWT_PASSWORD = process.env.JWT_PASSWORD as string;
-console.log(JWT_PASSWORD)
 
+const JWT_PASSWORD = process.env.JWT_PASSWORD as string;
+const FRONTEND_URL = process.env.FRONTEND_URL as string
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+
+));
 
 //start creating backend apis
 app.post("/api/v1/signup", async (req, res) => {
@@ -154,7 +155,7 @@ app.get("/api/v1/brain/:shareLink", async(req, res)=>{
     userId: link.userId
   })
 
-  console.log(link)
+  // console.log(link)
 
   const user = await userModel.findOne({
     _id : link.userId
