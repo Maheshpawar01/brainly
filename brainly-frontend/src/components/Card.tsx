@@ -6,6 +6,12 @@ interface cardProps{
     link: string;
     type:"twitter" | "youtube"
 }
+declare global {
+  interface Window {
+    twttr?: any;
+  }
+}
+
 export function Card(props: cardProps){
      const twitterRef = useRef<HTMLDivElement>(null);
 
