@@ -1,4 +1,5 @@
 import { ShareIcon } from "../icons/ShareIcon";
+import { useEffect, useRef } from "react";
 
 interface cardProps{
     title:string;
@@ -6,6 +7,26 @@ interface cardProps{
     type:"twitter" | "youtube"
 }
 export function Card(props: cardProps){
+     const twitterRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (props.type === "twitter") {
+      // Check if the widgets.js script is already included
+      if (!window.twttr) {
+        const script = document.createElement("script");
+        script.src = "https://platform.twitter.com/widgets.js";
+        script.async = true;
+        script.onload = () => {
+          window?.twttr?.widgets.load(twitterRef.current);
+        };
+        document.body.appendChild(script);
+      } else {
+        // If script is already present, just call widgets.load
+        window?.twttr?.widgets.load(twitterRef.current);
+      }
+    }
+  }, [props.link, props.type]);
+
     return <div className=" p-4 bg-white rounded-md shadow-md border border-gray-200 max-w-72 min-w-72 m-w-48 ">
 
 
