@@ -19,14 +19,19 @@ app.use(cors(
 app.post("/api/v1/signup", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const name = req.body.name;
+  console.log(req.body)
+  console.log('Received from frontend:', req.body);
 
   try {
     await userModel.create({
       username: username,
       password: password,
+      name:name,
     });
 
-    res.json({
+    res.status(200).json({
+      name:name,
       message: "user signed up",
     });
   } catch (error) {
@@ -34,6 +39,7 @@ app.post("/api/v1/signup", async (req, res) => {
       message: "User alread exists",
     });
   }
+  console.log(req.body)
 });
 app.post("/api/v1/signin", async (req, res) => {
   const username = req.body.username;
@@ -53,6 +59,7 @@ app.post("/api/v1/signin", async (req, res) => {
 
       res.json({
         token,
+        name:existingUser.name,     
       });
     } else {
       res.status(403).json({

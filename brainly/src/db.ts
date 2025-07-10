@@ -10,7 +10,8 @@ mongoose.connect(MONGODB_URL)
 //user schema
 const UserSchema = new Schema({
     username:{type:String, unique:true},
-    password:String
+    password:String,
+    name:{type:String, trim:true}
 })
 
 export const userModel = model("User", UserSchema)
