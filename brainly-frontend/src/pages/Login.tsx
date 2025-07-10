@@ -15,14 +15,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
-    const usernameRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const [showPassword, setShowpassword] = useState(true);
   const [isLogin, setIslogin] = useState(false);
 
-
   const submitHandler = async () => {
+    const name = nameRef.current?.value;
+    console.log("Name input value:", name);
+
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
     try {
@@ -32,11 +35,16 @@ export function Login() {
         const response = await axios.post(`${BACKEND_URL}/api/v1/signup`, {
           username,
           password,
+          name,
         });
-      if (response.status === 200) {
-        // navigate only on success
-        navigate("/dashboard");
-      }
+        if (response.status === 200) {
+          // navigate only on success
+          const jwt = response.data.token;
+          const name = response.data.name;
+          localStorage.setItem("token", jwt);
+          localStorage.setItem("name", name);
+          navigate("/dashboard");
+        }
         navigate("/dashboard");
       } else {
         //login
@@ -46,11 +54,14 @@ export function Login() {
         });
 
         const jwt = response.data.token;
+        const name = response.data.name;
+
         localStorage.setItem("token", jwt);
+        localStorage.setItem("name", name);
         navigate("/dashboard");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -80,6 +91,22 @@ export function Login() {
           </p>
         </div>
 
+        {/* //name input */}
+        <div className="w-full flex flex-col gap-3">
+          <div className="w-full flex items-center bg-gray-300 p-2 rounded-xl gap-2">
+            <span className="text-gray-800 pt-1">
+              <EmailIcon />
+            </span>
+            <div className="flex-1">
+              <InputBox
+                reference={nameRef}
+                type="text"
+                placeholder="Your Name"
+              />
+            </div>
+          </div>
+        </div>
+
         <div className="w-full flex flex-col gap-3">
           <div className="w-full flex items-center bg-gray-300 p-2 rounded-xl gap-2">
             <span className="text-gray-800 pt-1">
@@ -104,7 +131,7 @@ export function Login() {
               <InputBox
                 reference={passwordRef}
                 type={showPassword ? "password" : "text"}
-                placeholder="example@gmail.com"
+                placeholder="password"
               />
             </div>
             <span className="text-gray-800 pt-1 cursor-pointer">

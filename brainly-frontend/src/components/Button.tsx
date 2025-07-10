@@ -16,7 +16,7 @@ const varientClasses = {
 const defaultStyles = "px-3 py-2 rounded-md font-light flex items-center"
 
 export function Button(props:ButtonProps){
-    return <button onClick={props.onClick} className={`${varientClasses[props.varient]} ${defaultStyles} ${props.fullWidth? "w-full flex items-center justify-center" : ""} cursor-pointer hover:bg-purple-700 `}>
+    return <button onClick={props.onClick} className={`${varientClasses[props.varient]} ${defaultStyles} ${props.fullWidth? "w-full flex items-center justify-center" : ""} cursor-pointer hover:bg-purple-700 hover:text-white `}>
               {props.startIcon ? (
         <span className="pr-2">
           {props.startIcon}

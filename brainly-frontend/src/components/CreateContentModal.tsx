@@ -34,7 +34,7 @@ export function CreateContentModal(props:any){
     }
 
     return <div>
-        {props.open && <div className="w-screen h-screen bg-red-200/60 fixed top-0 left-0 flex justify-center items-center">
+        {props.open && <div className="w-screen h-screen bg-gray-400/60 fixed top-0 left-0 flex justify-center items-center">
             <div className="flex flex-col justify-center" >
                 <span className="p-4 bg-white rounded">
                     <div className="flex justify-end cursor-pointer">

@@ -1,3 +1,4 @@
+import { DeleteIcon } from "../icons/DeleteIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 import { useEffect, useRef } from "react";
 
@@ -51,7 +52,7 @@ export function Card(props: cardProps){
                     </a>
                 </div>
                 <div className=" text-gray-500">
-                <ShareIcon/>
+                <DeleteIcon/>
                 </div>
             </div>
         </div>
