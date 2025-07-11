@@ -24,8 +24,6 @@ export function Login() {
 
   const submitHandler = async () => {
     const name = nameRef.current?.value;
-    console.log("Name input value:", name);
-
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
     try {

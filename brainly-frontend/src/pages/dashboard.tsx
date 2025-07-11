@@ -13,7 +13,7 @@ import { SearchItem } from "../components/SearchItem";
 import {Sun} from "../icons/Sun"
 
 export function Dashboard() {
-  // const name = localStorage.getItem("name")
+  const firstName = localStorage.getItem("name")
   const [modalOpen, setModalOpen] = useState(false);
   const { contents, refresh } = useContent();
 
@@ -34,7 +34,7 @@ export function Dashboard() {
         />
         <div className="flex justify-end gap-4 pr-8">
           <h3 className="pl-4 mr-auto">
-            Hi <span className="text-blue-600">name</span>
+            Hi <span className="text-blue-600">{firstName}</span>
           </h3>
            <Sun/>
           <Button
