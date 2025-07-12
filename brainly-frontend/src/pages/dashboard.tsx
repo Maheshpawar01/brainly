@@ -10,22 +10,49 @@ import { useContent } from "../hooks/useContent";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { SearchItem } from "../components/SearchItem";
-import {Sun} from "../icons/Sun"
+import { Moon } from "../icons/Moon";
+import { Sun } from "../icons/Sun";
 
 export function Dashboard() {
   const firstName = localStorage.getItem("name")
   const [modalOpen, setModalOpen] = useState(false);
   const { contents, refresh } = useContent();
 
+  const [darkmode, setdarkmode] = useState(
+        localStorage.getItem("darkmode") || "light"
+  )
+
+  const toggleMode = ()=>{
+    const theme = darkmode === "light" ? "dark":"light"
+    setdarkmode(theme);
+    localStorage.setItem("darkmode", theme);
+    document.documentElement.classList.toggle("dark", theme === "dark")
+    // setdarkmode(!darkmode)
+  }
+  //on mount seting <html> class based on saved theme
+  useEffect(()=>{
+    document.documentElement.classList.toggle("dark", darkmode == "dark")
+  }, [darkmode])
+
   useEffect(() => {
     refresh();
   }, [modalOpen]);
 
+  // useEffect(()=>{
+  //   if(darkmode){
+  //   document.documentElement.setAttribute("data-theme", "dark")
+  //   }
+  //   else{
+  //         document.documentElement.setAttribute("data-theme", "")
+
+  //   }
+  // },[])
+
   return (
-    <div>
+    <div className="dark:bg-gray-900">
       <Sidebar />
 
-      <div className="p-4 ml-72 min-h-screen bg-gray-100">
+      <div className="p-4 ml-72 min-h-screen bg-gray-100 dark:bg-gray-900">
         <CreateContentModal
           open={modalOpen}
           onClose={() => {
@@ -34,9 +61,11 @@ export function Dashboard() {
         />
         <div className="flex justify-end gap-4 pr-8">
           <h3 className="pl-4 mr-auto">
-            Hi <span className="text-blue-600">{firstName}</span>
+            Hi <span className="text-purple-600 text-xl font-bold ">{firstName}</span>
           </h3>
-           <Sun/>
+          {
+            darkmode === "dark" ? <Sun onClick={toggleMode}/> : <Moon onClick={toggleMode}/>
+          }
           <Button
             onClick={async () => {
               const response = await axios.post(
