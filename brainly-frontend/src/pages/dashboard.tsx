@@ -49,7 +49,7 @@ export function Dashboard() {
   // },[])
 
   return (
-    <div className="dark:bg-gray-900">
+    <div >
       <Sidebar />
 
       <div className="p-4 ml-72 min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -60,12 +60,15 @@ export function Dashboard() {
           }}
         />
         <div className="flex justify-end gap-4 pr-8">
-          <h3 className="pl-4 mr-auto">
+          <h3 className="pl-4 mr-auto dark:text-white">
             Hi <span className="text-purple-600 text-xl font-bold ">{firstName}</span>
           </h3>
+          <div className="dark:text-white hover:shadow-md hover:shadow-gray-500/80 rounded-full transition-shadow">
+
           {
             darkmode === "dark" ? <Sun onClick={toggleMode}/> : <Moon onClick={toggleMode}/>
           }
+          </div>
           <Button
             onClick={async () => {
               const response = await axios.post(

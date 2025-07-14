@@ -1,3 +1,4 @@
+import { SearchIcon } from '../icons/SearchIcon'
 import { InputBox } from './InputBox'
 
 export function SearchItem() {
@@ -6,7 +7,7 @@ export function SearchItem() {
         <div className="w-full flex flex-col gap-3 pl-4 py-4 pr-8">
               <div className="w-full flex items-center bg-gray-300 p-2 rounded-xl gap-2">
                 <span className="text-gray-800 pt-1">
-                  {/* <FingerIcon /> */}
+                  <SearchIcon />
                 </span>
                 <div className="flex-1">
                   <InputBox
