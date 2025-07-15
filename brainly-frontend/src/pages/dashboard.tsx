@@ -38,16 +38,6 @@ export function Dashboard() {
     refresh();
   }, [modalOpen]);
 
-  // useEffect(()=>{
-  //   if(darkmode){
-  //   document.documentElement.setAttribute("data-theme", "dark")
-  //   }
-  //   else{
-  //         document.documentElement.setAttribute("data-theme", "")
-
-  //   }
-  // },[])
-
   return (
     <div >
       <Sidebar />

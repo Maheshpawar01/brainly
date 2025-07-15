@@ -43,7 +43,6 @@ export function Login() {
           localStorage.setItem("name", name);
           navigate("/dashboard");
         }
-        navigate("/dashboard");
       } else {
         //login
         const response = await axios.post(`${BACKEND_URL}/api/v1/signin`, {
