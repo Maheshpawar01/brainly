@@ -19,11 +19,12 @@ export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const { contents, refresh } = useContent();
 
+   const [sidebarOpen, setSidebarOpen] = useState(false); 
+
   const [darkmode, setdarkmode] = useState(
         localStorage.getItem("darkmode") || "light"
   )
 
-  //  const [sidebarOpen, setSidebarOpen] = useState(false); 
 
   const toggleMode = ()=>{
     const theme = darkmode === "light" ? "dark":"light"
@@ -57,8 +58,11 @@ export function Dashboard() {
 
           {/* responsive nav for mobile screens */}
           <div className="md:hidden flex pl-4 justify-between sm:flex-row gap-2 md:w-auto">
-            <div className=" bg-gray-500 p-2 dark:text-white hover:shadow-md hover:shadow-gray-500/80 rounded-full transition-shadow cursor-pointer">
-             <HamburgerIcon/>
+            {
+              sidebarOpen == true ? <Sidebar onClick={()=>setSidebarOpen(false)}/> : null
+            }
+            <div className=" bg-gray-500 p-2 dark:text-white hover:shadow-md hover:shadow-gray-500/80 rounded-full transition-shadow cursor-pointer" onClick={()=> setSidebarOpen(true)}>
+             <HamburgerIcon />
             </div>
             <div>
           <h3 className="pl-4 mr-auto dark:text-white">
@@ -72,6 +76,8 @@ export function Dashboard() {
           }
           </div>
         </div>
+
+        {/*  */}
             
             <h3 className="pl-4 mr-auto dark:text-white hidden md:block">
             Hi <span className="text-purple-600 text-xl font-bold ">{firstName}</span>
