@@ -38,6 +38,7 @@ export function Login() {
         if (response.status === 200) {
           // navigate only on success
           const jwt = response.data.token;
+          console.log("token", jwt)
           const name = response.data.name;
           localStorage.setItem("token", jwt);
           localStorage.setItem("name", name);

@@ -82,7 +82,7 @@ export function Dashboard() {
             <h3 className="pl-4 mr-auto dark:text-white hidden md:block">
             Hi <span className="text-purple-600 text-xl font-bold ">{firstName}</span>
           </h3>
-          <div className=" pl-2 dark:text-white hover:shadow-md hover:shadow-gray-500/80 rounded-full transition-shadow hidden md:block">
+          <div className=" dark:text-white hover:shadow-md hover:shadow-gray-500/80 rounded-full transition-shadow hidden md:block">
 
           {
             darkmode === "dark" ? <Sun onClick={toggleMode}/> : <Moon onClick={toggleMode}/>
