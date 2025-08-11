@@ -5,7 +5,15 @@ Brainly is a minimalist web application that allows users to securely store, man
 **Website Link:** https://brainly-ivory-delta.vercel.app/
 
 
-📸 **Screenshots**
+📸 **Working**
+
+https://github.com/user-attachments/assets/a3c566f6-70bf-4c20-af8d-8685c3ff5df1
+
+<img width="1904" height="844" alt="Screenshot 2025-08-11 223624" src="https://github.com/user-attachments/assets/2a98aa54-57dc-4555-bb5c-2778c11957d2" />
+
+<img width="1897" height="836" alt="Screenshot 2025-08-11 223654" src="https://github.com/user-attachments/assets/a5bef295-b85d-4798-8e9f-89504b5a2caf" />
+
+
 
 🚀 **Key Features**
 
